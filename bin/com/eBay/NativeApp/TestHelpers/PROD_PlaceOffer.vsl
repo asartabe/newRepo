@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlaceOfferRequest xmlns="urn:ebay:apis:eBLBaseComponents">
+  <RequesterCredentials>
+    <Username>$userName</Username>
+    <Password>$userPassword</Password>
+  </RequesterCredentials>
+	<ErrorLanguage>en_US</ErrorLanguage>
+	<WarningLevel>High</WarningLevel>
+  <EndUserIP>0.0.0.0</EndUserIP>
+  <ItemID>$item.getItemID()</ItemID>
+  <Offer>
+    <Action>$action.value()</Action>
+    <Quantity>1</Quantity>
+    <MaxBid currencyID="AUD">$item.getStartPrice().getValue()</MaxBid>
+  </Offer>
+</PlaceOfferRequest>

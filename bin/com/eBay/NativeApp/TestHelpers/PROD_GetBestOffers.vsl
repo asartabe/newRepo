@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetBestOffersRequest xmlns="urn:ebay:apis:eBLBaseComponents">
+  <RequesterCredentials>
+  	<Username>$userName</Username>
+    <Password>$userPassword</Password>
+  </RequesterCredentials>
+	<ErrorLanguage>en_US</ErrorLanguage>
+	<WarningLevel>High</WarningLevel>
+	<ItemID>$item.getItemID()</ItemID>
+	<DetailLevel>ReturnAll</DetailLevel>
+	<BestOfferStatus>All</BestOfferStatus>
+</GetBestOffersRequest>

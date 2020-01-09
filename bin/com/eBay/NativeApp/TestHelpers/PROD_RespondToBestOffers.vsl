@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<RespondToBestOfferRequest xmlns="urn:ebay:apis:eBLBaseComponents"> 
+  <RequesterCredentials>
+  	<Username>$userName</Username>
+    <Password>$userPassword</Password>
+  </RequesterCredentials>
+	<ErrorLanguage>en_US</ErrorLanguage>
+	<WarningLevel>High</WarningLevel>
+  <!-- <SiteId>$siteID</SiteId> -->
+  <ItemID>$item.getItemID()</ItemID> 
+  <BestOfferID>$offerID</BestOfferID> 
+  <Action>$action</Action> 
+  <SellerResponse>Test Offer Response</SellerResponse> 
+</RespondToBestOfferRequest>

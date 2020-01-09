@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddItemRequest xmlns="urn:ebay:apis:eBLBaseComponents">
+  <RequesterCredentials>
+  	<Username>$userName</Username>
+    <Password>$userPassword</Password>
+    <!--<eBayAuthToken>$prodUser.getTokenValue()</eBayAuthToken>-->
+  </RequesterCredentials>
+	<ErrorLanguage>en_US</ErrorLanguage>
+	<WarningLevel>High</WarningLevel>
+  <Item>
+    <Title>$item.getTitle().toString()</Title>
+    <Description>TEST ITEM DO NOT BUY</Description>
+    <PrimaryCategory>
+      <CategoryID>$item.getPrimaryCategory().getCategoryID()</CategoryID>
+    </PrimaryCategory>
+    <StartPrice>$item.getStartPrice().getValue()</StartPrice>
+    
+    #if($item.getBuyItNowPrice().getValue() > 0.00)
+      <BuyItNowPrice>$item.getBuyItNowPrice().getValue()</BuyItNowPrice>
+    #end
+    
+    #if($item.getBestOfferDetails().isBestOfferEnabled().booleanValue())
+      <BestOfferDetails>
+        <BestOfferEnabled>$item.getBestOfferDetails().isBestOfferEnabled().booleanValue()</BestOfferEnabled>
+      </BestOfferDetails>
+    #end
+    
+    #if($item.getDescription().contains("AUTO"))
+      <ListingDetails>
+		<MinimumBestOfferPrice>$item.getListingDetails().getMinimumBestOfferPrice().getValue()</MinimumBestOfferPrice>
+		<BestOfferAutoAcceptPrice>$item.getListingDetails().getBestOfferAutoAcceptPrice().getValue()</BestOfferAutoAcceptPrice>
+	  </ListingDetails>
+    #end
+    
+    <CategoryMappingAllowed>true</CategoryMappingAllowed>
+    <Country>$item.getCountry().toString()</Country>
+    <Currency>$item.getCurrency().toString()</Currency>
+    <ConditionID>$item.getConditionID().toString()</ConditionID>
+    
+    #if(!$item.getDescription().contains("LOCAL"))
+    <DispatchTimeMax>$item.getDispatchTimeMax().toString()</DispatchTimeMax>
+    #end
+    
+    <ListingDuration>$item.getListingDuration().toString()</ListingDuration>
+    
+    #if($calDate.length() > 0)
+    <ScheduleTime>$calDate</ScheduleTime>
+    #end
+    
+    <ListingType>$item.getListingType().value()</ListingType>
+    
+    #if($item.getListingType().value().equals("LeadGeneration"))
+    	<ListingSubtype2>$item.getListingSubtype2().value()</ListingSubtype2>
+    #end
+    
+    <PaymentMethods>$item.getPaymentMethods(0).value()</PaymentMethods>
+    <PayPalEmailAddress>$item.getPayPalEmailAddress().toString()</PayPalEmailAddress>
+    <PictureDetails>
+      <PictureURL>https://s15.postimg.org/4no75mwnf/Transformer_Open_and_Short_Circuit_Tests.png</PictureURL>
+    </PictureDetails>
+    <PostalCode>$item.getPostalCode().toString()</PostalCode>
+    <Quantity>$item.getQuantity().toString()</Quantity>
+    <ReturnPolicy>
+      <ReturnsAcceptedOption>$item.getReturnPolicy().getReturnsAcceptedOption().toString()</ReturnsAcceptedOption>
+      <RefundOption>$item.getReturnPolicy().getRefundOption()</RefundOption>
+      <ReturnsWithinOption>$item.getReturnPolicy().getReturnsWithinOption()</ReturnsWithinOption>
+      <Description>If you are not satisfied, return the ITEM for refund.</Description>
+      <ShippingCostPaidByOption>Buyer</ShippingCostPaidByOption>
+    </ReturnPolicy>
+    
+    #if(!$item.getDescription().contains("LOCAL"))
+    <ShippingDetails>
+      <ShippingType>$item.getShippingDetails().getShippingType().value()</ShippingType>
+      <ShippingServiceOptions>
+        <ShippingServicePriority>$item.getShippingDetails().getShippingServiceOptions(0).getShippingServicePriority().intValue()</ShippingServicePriority>
+        <ShippingService>$item.getShippingDetails().getShippingServiceOptions(0).getShippingService().toString()</ShippingService>
+        <ShippingServiceCost>$item.getShippingDetails().getShippingServiceOptions(0).getShippingServiceCost().getValue()</ShippingServiceCost>
+      </ShippingServiceOptions>
+      #if($item.getDescription().contains("INTL"))
+       <InternationalShippingServiceOption>
+        <ShippingService>$item.getShippingDetails().getInternationalShippingServiceOption()[0].getShippingService()</ShippingService>
+        <ShippingServiceCost>$item.getShippingDetails().getInternationalShippingServiceOption()[0].getShippingServiceCost().getValue()</ShippingServiceCost>
+        <ShippingServicePriority>$item.getShippingDetails().getInternationalShippingServiceOption()[0].getShippingServicePriority()</ShippingServicePriority>
+        <ShipToLocation>$item.getShippingDetails().getInternationalShippingServiceOption()[0].getShipToLocation(0)</ShipToLocation>
+      </InternationalShippingServiceOption>
+      #end
+    </ShippingDetails>
+    #end
+    
+    #if($item.getDescription().contains("LOCAL"))
+    <ShipToLocations>None</ShipToLocations>
+    #end
+    
+    <PickupInStoreDetails>
+      <EligibleForPickupInStore>false</EligibleForPickupInStore>
+      <AvailableForPickupInStore>false</AvailableForPickupInStore>
+    </PickupInStoreDetails>
+ </Item>
+</AddItemRequest>
